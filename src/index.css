@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+/* --- 1. RESET & GLOBAL LAYOUT --- */
+/* Biarkan normal agar halaman lain (Dashboard/Laporan) tetap bisa scroll jika datanya panjang */
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+/* --- 2. CUSTOM SCROLLBAR MODERN (Pilihan Indigo Kamu) --- */
+/* Menggunakan warna indigo #4f46e5 agar serasi dengan branding Alfin Kasir */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #4f46e5;
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #4338ca;
+}
+
+/* --- 3. CLASS SEMBUNYIIN SCROLLBAR --- */
+/* Gunakan class 'no-scrollbar' pada div produk di Transaksi.tsx agar tampilan bersih tanpa batang abu-abu */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* --- 4. GLOBAL PRINT SETTINGS (FIX MELEBAR) --- */
+@media print {
+  @page {
+    size: auto; /* Biar browser otomatis nyesuain sama kertas yang dipilih (A4/58mm) */
+    margin: 0;
+  }
+
+  /* Sembunyiin semua elemen kecuali modal struk lo */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Target ID struk lo biar nampil paling depan dan lebar */
+  #receipt-print,
+  #receipt-print * {
+    visibility: visible;
+  }
+
+  #receipt-print {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important; /* INI KUNCINYA: Paksa lebar 100% mengikuti kertas */
+    max-width: none !important;
+    padding: 10mm; /* Kasih jarak dikit biar gak mepet banget ke pinggir kertas A4 */
+    margin: 0;
+    background: white;
+    color: black !important;
+    font-size: 14pt; /* Font digedein dikit biar gak kekecilan di kertas A4 */
+  }
+
+  /* Hilangkan efek shadow/border modal pas di print */
+  .fixed,
+  .bg-white {
+    box-shadow: none !important;
+    border: none !important;
+  }
+}

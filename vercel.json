@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api-kasir/:path*",
+      "destination": "/api/index.js"
+    }
+  ]
+}
