@@ -60,7 +60,6 @@ app.get('/api-kasir/dashboard_data.php', (req, res) => {
 });
 
 app.all('/api-kasir/login.php', (req, res) => {
-  // Selalu sukses untuk demo
   res.json({ success: true, user: users[0] });
 });
 
